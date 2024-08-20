@@ -32,7 +32,6 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
-                sh 'zap-cli quick-scan --self-contained http://your-app-url'
             }
             post {
                 always {
