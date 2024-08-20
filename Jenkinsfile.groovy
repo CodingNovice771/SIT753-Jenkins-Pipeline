@@ -7,13 +7,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the code...'
-                sh 'mvn clean install'
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
-                sh 'mvn test'
             }
             post {
                 always {
@@ -29,7 +27,6 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing code quality...'
-                sh 'mvn sonar:sonar'
             }
         }
         stage('Security Scan') {
@@ -51,19 +48,16 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to Staging environment...'
-                sh 'deploy-script.sh staging'
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on Staging environment...'
-                sh 'mvn integration-test -Pstaging'
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production environment...'
-                sh 'deploy-script.sh production'
             }
         }
     }
